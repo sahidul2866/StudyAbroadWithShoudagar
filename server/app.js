@@ -69,14 +69,15 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+app.get('/', (req, res) => {
+  res.send('API is running. Use /api/... routes.');
+});
 
 // === 404 Handler ===
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
-app.get('/', (req, res) => {
-  res.send('API is running. Use /api/... routes.');
-});
+
 
 
 // === Global Error Handler ===
