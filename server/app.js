@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static('uploads'));
 
 // === MongoDB Connection ===
-const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://sahidul2866:LXNRGYtcWolXjFpj@sahidul.panszqz.mongodb.net';
+const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://sahidul2866:LXNRGYtcWolXjFpj@sahidul.panszqz.mongodb.net/studyabroad';
 
 mongoose.connect(mongoURI)
   .then(() => console.log('✅ MongoDB connected successfully'))
