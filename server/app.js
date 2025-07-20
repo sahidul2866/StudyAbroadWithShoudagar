@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static('uploads'));
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/studyabroad', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://sahidul2866:LXNRGYtcWolXjFpj@sahidul.panszqz.mongodb.net', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
