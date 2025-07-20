@@ -74,6 +74,10 @@ app.get('/api/health', (req, res) => {
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
+app.get('/', (req, res) => {
+  res.send('API is running. Use /api/... routes.');
+});
+
 
 // === Global Error Handler ===
 app.use((err, req, res, next) => {
