@@ -1,7 +1,8 @@
 /* Global Styles for StudyAbroadWithShoudagar */
 
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 /* CSS Reset and Base Styles */
 * {
@@ -15,23 +16,26 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: #1f2937;
-  background-color: #f9fafb;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom Color Variables */
 :root {
-  --primary-green: #059669;
-  --primary-green-light: #10b981;
-  --primary-green-dark: #047857;
-  --secondary-red: #dc2626;
-  --secondary-red-light: #ef4444;
-  --accent-gold: #f59e0b;
-  --accent-gold-light: #fbbf24;
+  --primary-green: #16a085;
+  --primary-green-light: #1abc9c;
+  --primary-green-dark: #138d75;
+  --secondary-red: #e74c3c;
+  --secondary-red-light: #ec7063;
+  --accent-gold: #f39c12;
+  --accent-gold-light: #f4d03f;
+  --accent-blue: #3498db;
+  --accent-purple: #9b59b6;
   
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
@@ -55,11 +59,11 @@ body {
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   
-  --border-radius: 0.5rem;
-  --border-radius-lg: 0.75rem;
-  --border-radius-xl: 1rem;
+  --border-radius: 0.75rem;
+  --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
   
-  --transition: all 0.2s ease-in-out;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Typography */
@@ -116,13 +120,15 @@ a:hover {
 
 .btn-primary {
   background-color: var(--primary-green);
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
   color: white;
+  box-shadow: 0 4px 15px rgba(22, 160, 133, 0.3);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: var(--primary-green-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--primary-green-dark) 0%, var(--primary-green) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(22, 160, 133, 0.4);
 }
 
 .btn-secondary {
@@ -160,15 +166,18 @@ a:hover {
 /* Cards */
 .card {
   background: white;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
   border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
   transition: var(--transition);
+  backdrop-filter: blur(10px);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px) scale(1.02);
 }
 
 .card-header {

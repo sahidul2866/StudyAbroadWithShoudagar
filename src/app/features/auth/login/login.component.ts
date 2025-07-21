@@ -131,12 +131,23 @@ import { AuthService } from '../../../core/services/auth.service';
         </div>
 
         <!-- Demo Credentials -->
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 class="text-sm font-medium text-blue-800 mb-2">Demo Credentials</h3>
-          <div class="text-xs text-blue-700 space-y-1">
-            <div><strong>Student:</strong> student@demo.com / password123</div>
-            <div><strong>Admin:</strong> admin@demo.com / password123</div>
+        <div class="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-xl p-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">🚀 Quick Demo Access</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <button 
+              type="button"
+              (click)="fillDemoCredentials('student')"
+              class="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md">
+              👨‍🎓 Student Demo
+            </button>
+            <button 
+              type="button"
+              (click)="fillDemoCredentials('admin')"
+              class="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md">
+              👨‍💼 Admin Demo
+            </button>
           </div>
+          <p class="text-xs text-gray-600 text-center mt-3">Click to auto-fill credentials and test the platform</p>
         </div>
       </div>
     </div>
@@ -159,6 +170,25 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       rememberMe: [false]
     });
+    // Pre-fill demo credentials for easy testing
+    this.loginForm.patchValue({
+      email: 'student@demo.com',
+      password: 'password123'
+    });
+  }
+
+  fillDemoCredentials(type: 'student' | 'admin') {
+    if (type === 'student') {
+      this.loginForm.patchValue({
+        email: 'student@demo.com',
+        password: 'password123'
+      });
+    } else {
+      this.loginForm.patchValue({
+        email: 'admin@demo.com',
+        password: 'password123'
+      });
+    }
   }
 
   togglePasswordVisibility() {

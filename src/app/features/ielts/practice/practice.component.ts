@@ -13,112 +13,168 @@ import { IeltsService, WritingSubmission, SpeakingSubmission, IeltsTestResult } 
     <app-navbar></app-navbar>
     
     <div class="min-h-screen bg-gray-50">
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Header -->
-        <div class="text-center mb-8">
-          <h1 class="text-3xl font-bold text-gray-900 mb-2">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full mb-4">
+            <span class="text-2xl">✍️</span>
+          </div>
+          <h1 class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
             IELTS {{ currentSection | titlecase }} Practice
           </h1>
-          <p class="text-gray-600">
+          <p class="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
             {{ getSectionDescription() }}
           </p>
         </div>
 
         <!-- Writing Practice -->
-        <div *ngIf="currentSection === 'writing'" class="card">
-          <div class="card-header">
+        <div *ngIf="currentSection === 'writing'" class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          <div class="bg-gradient-to-r from-purple-500 to-blue-600 px-8 py-6">
             <div class="flex justify-between items-center">
-              <h2 class="text-xl font-semibold text-gray-900">Writing Task {{ selectedTask }}</h2>
+              <h2 class="text-2xl font-bold text-white">Writing Task {{ selectedTask }}</h2>
               <div class="flex items-center space-x-4">
                 <button 
                   (click)="selectedTask = 1"
-                  [class]="selectedTask === 1 ? 'btn btn-primary btn-sm' : 'btn btn-secondary btn-sm'">
+                  [class]="selectedTask === 1 ? 'bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold shadow-md' : 'bg-purple-400 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-300 transition-colors'">
                   Task 1
                 </button>
                 <button 
                   (click)="selectedTask = 2"
-                  [class]="selectedTask === 2 ? 'btn btn-primary btn-sm' : 'btn btn-secondary btn-sm'">
+                  [class]="selectedTask === 2 ? 'bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold shadow-md' : 'bg-purple-400 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-300 transition-colors'">
                   Task 2
                 </button>
               </div>
             </div>
           </div>
           
-          <div class="card-body">
+          <div class="p-8">
             <!-- Timer -->
-            <div class="flex justify-between items-center mb-6 p-4 bg-blue-50 rounded-lg">
-              <div class="text-sm text-blue-700">
+            <div class="flex justify-between items-center mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
+              <div class="text-lg font-semibold text-blue-800">
                 <strong>Time Limit:</strong> {{ selectedTask === 1 ? '20 minutes' : '40 minutes' }}
               </div>
-              <div class="text-lg font-bold text-blue-800">
+              <div class="text-2xl font-bold text-purple-800 bg-white px-4 py-2 rounded-lg shadow-md">
                 {{ formatTime(timeElapsed) }}
               </div>
             </div>
 
             <!-- Task Instructions -->
-            <div class="mb-6 p-4 bg-yellow-50 border-l-4 border-yellow-400">
-              <h3 class="font-semibold text-yellow-800 mb-2">Task Instructions:</h3>
-              <p class="text-yellow-700 text-sm">{{ getTaskInstructions() }}</p>
+            <div class="mb-8 p-6 bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-400 rounded-r-xl">
+              <h3 class="font-bold text-yellow-800 mb-3 text-lg flex items-center">
+                <span class="mr-2">📝</span>
+                Task Instructions:
+              </h3>
+              <p class="text-yellow-700 leading-relaxed">{{ getTaskInstructions() }}</p>
             </div>
 
             <!-- Writing Form -->
             <form [formGroup]="writingForm" (ngSubmit)="submitWritingTest()" *ngIf="!isSubmitting && !testResult">
-              <div class="form-group">
-                <label class="form-label">Your Response:</label>
+              <div class="mb-8">
+                <label class="block text-lg font-semibold text-gray-800 mb-4">Your Response:</label>
                 <textarea 
                   formControlName="writingText"
-                  class="form-control"
+                  class="w-full px-4 py-4 border-2 border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all duration-300 resize-none"
                   rows="15"
                   placeholder="Start writing your response here..."
                   (input)="updateWordCount()"
-                  [class.is-invalid]="writingForm.get('writingText')?.invalid && writingForm.get('writingText')?.touched">
+                  [class.border-red-500]="writingForm.get('writingText')?.invalid && writingForm.get('writingText')?.touched">
                 </textarea>
-                <div class="flex justify-between items-center mt-2">
-                  <div class="text-sm text-gray-500">
+                <div class="flex justify-between items-center mt-4">
+                  <div class="text-lg font-medium text-gray-700">
                     Words: {{ wordCount }} / {{ selectedTask === 1 ? '150 minimum' : '250 minimum' }}
                   </div>
                   <div *ngIf="writingForm.get('writingText')?.invalid && writingForm.get('writingText')?.touched" 
-                       class="invalid-feedback">
+                       class="text-red-600 font-medium">
                     Please write your response
                   </div>
                 </div>
               </div>
 
-              <div class="flex justify-between items-center">
-                <button type="button" (click)="resetTest()" class="btn btn-secondary">
+              <div class="flex justify-between items-center gap-4">
+                <button type="button" (click)="resetTest()" class="px-6 py-3 bg-gray-200 text-gray-800 rounded-xl font-semibold hover:bg-gray-300 transition-colors shadow-md">
                   Reset
                 </button>
                 <button 
                   type="submit" 
                   [disabled]="writingForm.invalid || wordCount < (selectedTask === 1 ? 150 : 250)"
-                  class="btn btn-primary">
+                  class="px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-600 text-white rounded-xl font-semibold hover:from-purple-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
                   Submit for AI Evaluation
                 </button>
               </div>
             </form>
 
             <!-- Loading State -->
-            <div *ngIf="isSubmitting" class="text-center py-12">
-              <div class="spinner mx-auto mb-4" style="width: 2rem; height: 2rem;"></div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Evaluating Your Response</h3>
-              <p class="text-gray-600">Our AI is analyzing your writing. This may take a few moments...</p>
+            <div *ngIf="isSubmitting" class="text-center py-16">
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full mb-6 animate-pulse">
+                <div class="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">🤖 AI is Evaluating Your Response</h3>
+              <p class="text-lg text-gray-700 max-w-md mx-auto leading-relaxed">Our advanced AI is analyzing your writing using official IELTS criteria. This may take a few moments...</p>
+              <div class="mt-6 flex justify-center space-x-2">
+                <div class="w-3 h-3 bg-purple-500 rounded-full animate-bounce"></div>
+                <div class="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+              </div>
             </div>
 
             <!-- Test Results -->
-            <div *ngIf="testResult && !isSubmitting" class="space-y-6">
+            <div *ngIf="testResult && !isSubmitting" class="space-y-8">
               <div class="text-center">
-                <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-4">
-                  <span class="text-3xl font-bold text-green-600">{{ testResult.overallScore }}</span>
+                <div class="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mb-6 shadow-2xl">
+                  <span class="text-5xl font-bold text-white">{{ testResult.overallScore }}</span>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">Band Score: {{ testResult.overallScore }}/9</h3>
-                <p class="text-gray-600">{{ getBandDescription(testResult.overallScore) }}</p>
+                <h3 class="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-4">
+                  Band Score: {{ testResult.overallScore }}/9
+                </h3>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">{{ getBandDescription(testResult.overallScore) }}</p>
               </div>
 
               <!-- Detailed Scores -->
-              <div class="grid md:grid-cols-2 gap-4" *ngIf="testResult.detailedScores">
-                <div class="card">
-                  <div class="card-body text-center">
-                    <div class="text-2xl font-bold text-blue-600 mb-1">
+              <div class="grid md:grid-cols-2 gap-6" *ngIf="testResult.detailedScores">
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span class="text-2xl font-bold text-white">
+                        {{ testResult.detailedScores.taskAchievement || testResult.detailedScores.fluency || 0 }}
+                      </span>
+                    </div>
+                    <div class="text-lg font-semibold text-gray-800">
+                      {{ selectedTask === 1 ? 'Task Achievement' : 'Task Response' }}
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span class="text-2xl font-bold text-white">
+                        {{ testResult.detailedScores.coherenceCohesion || 0 }}
+                      </span>
+                    </div>
+                    <div class="text-lg font-semibold text-gray-800">Coherence & Cohesion</div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span class="text-2xl font-bold text-white">
+                        {{ testResult.detailedScores.lexicalResource || 0 }}
+                      </span>
+                    </div>
+                    <div class="text-lg font-semibold text-gray-800">Lexical Resource</div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span class="text-2xl font-bold text-white">
+                        {{ testResult.detailedScores.grammaticalRange || 0 }}
+                      </span>
+                    </div>
+                    <div class="text-lg font-semibold text-gray-800">Grammar & Accuracy</div>
+                  </div>
+                </div>
+              </div>
                       {{ testResult.detailedScores.taskAchievement || testResult.detailedScores.fluency || 0 }}
                     </div>
                     <div class="text-sm text-gray-600">
