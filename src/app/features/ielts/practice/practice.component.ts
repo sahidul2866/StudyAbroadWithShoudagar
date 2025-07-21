@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import { IeltsService, WritingSubmission, SpeakingSubmission, IeltsTestResult } from '../../../core/services/ielts.service';
 
 @Component({
   selector: 'app-practice',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, NavbarComponent, ReactiveFormsModule, FormsModule],
   template: `
     <app-navbar></app-navbar>
     
