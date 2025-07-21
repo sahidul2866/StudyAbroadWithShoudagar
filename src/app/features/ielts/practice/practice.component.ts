@@ -175,38 +175,6 @@ import { IeltsService, WritingSubmission, SpeakingSubmission, IeltsTestResult } 
                   </div>
                 </div>
               </div>
-                      {{ testResult.detailedScores.taskAchievement || testResult.detailedScores.fluency || 0 }}
-                    </div>
-                    <div class="text-sm text-gray-600">
-                      {{ selectedTask === 1 ? 'Task Achievement' : 'Task Response' }}
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body text-center">
-                    <div class="text-2xl font-bold text-green-600 mb-1">
-                      {{ testResult.detailedScores.coherenceCohesion || 0 }}
-                    </div>
-                    <div class="text-sm text-gray-600">Coherence & Cohesion</div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body text-center">
-                    <div class="text-2xl font-bold text-purple-600 mb-1">
-                      {{ testResult.detailedScores.lexicalResource || 0 }}
-                    </div>
-                    <div class="text-sm text-gray-600">Lexical Resource</div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body text-center">
-                    <div class="text-2xl font-bold text-orange-600 mb-1">
-                      {{ testResult.detailedScores.grammaticalRange || 0 }}
-                    </div>
-                    <div class="text-sm text-gray-600">Grammar & Accuracy</div>
-                  </div>
-                </div>
-              </div>
 
               <!-- Feedback -->
               <div class="card">
@@ -271,11 +239,11 @@ import { IeltsService, WritingSubmission, SpeakingSubmission, IeltsTestResult } 
               </div>
 
               <!-- Action Buttons -->
-              <div class="flex justify-center space-x-4">
-                <button (click)="resetTest()" class="btn btn-secondary">
+              <div class="flex justify-center space-x-6 pt-8">
+                <button (click)="resetTest()" class="px-8 py-4 bg-gradient-to-r from-gray-200 to-gray-300 text-gray-800 rounded-xl font-semibold hover:from-gray-300 hover:to-gray-400 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                   Try Again
                 </button>
-                <a routerLink="/ielts/results" class="btn btn-primary">
+                <a routerLink="/ielts/results" class="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-xl font-semibold hover:from-green-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                   View All Results
                 </a>
               </div>
